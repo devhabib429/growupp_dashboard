@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        .ui-group-buttons .or {
+            position: relative;
+            float: left;
+            width: .3em;
+            height: 1.3em;
+            z-index: 3;
+            font-size: 12px
+        }
+
+        .ui-group-buttons .or:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            content: 'or';
+            background-color: #5a5a5a;
+            margin-top: -.1em;
+            margin-left: -.9em;
+            width: 1.8em;
+            height: 1.8em;
+            line-height: 1.55;
+            color: #fff;
+            font-style: normal;
+            font-weight: 400;
+            text-align: center;
+            border-radius: 500px;
+            -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        .ui-group-buttons .or:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: ' ';
+            width: .3em;
+            height: 2.84em;
+            background-color: rgba(0, 0, 0, 0);
+            border-top: .6em solid #5a5a5a;
+            border-bottom: .6em solid #5a5a5a
+        }
+
+        .ui-group-buttons .or.or-lg {
+            height: 1.3em;
+            font-size: 16px
+        }
+
+        .ui-group-buttons .or.or-lg:after {
+            height: 2.85em
+        }
+
+        .ui-group-buttons .or.or-sm {
+            height: 1em
+        }
+
+        .ui-group-buttons .or.or-sm:after {
+            height: 2.5em
+        }
+
+        .ui-group-buttons .or.or-xs {
+            height: .25em
+        }
+
+        .ui-group-buttons .or.or-xs:after {
+            height: 1.84em;
+            z-index: -1000
+        }
+
+        .ui-group-buttons {
+            display: inline-block;
+            vertical-align: middle
+        }
+
+        .ui-group-buttons:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .ui-group-buttons .btn {
+            float: left;
+            border-radius: 0
+        }
+
+        .ui-group-buttons .btn:first-child {
+            margin-left: 0;
+            border-top-left-radius: .25em;
+            border-bottom-left-radius: .25em;
+            padding-right: 15px
+        }
+
+        .ui-group-buttons .btn:last-child {
+            border-top-right-radius: .25em;
+            border-bottom-right-radius: .25em;
+            padding-left: 15px
+        }
+    </style>
+
+
+
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/accountviews.css' %}">
+    <script src="{% static '/js/require.js' %}"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <!-- MB-BOOTSTRAP MODAL -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+
+
+</head>
+
+<body id="body-pd">
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+    <header class="header" id="header" style="background-color: white;box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div style="display: flex;justify-content: space-around;">
+            <div style="color: black;padding-right: 30px;"><b>Login as {{current_user}}</b></div>
+            <div class="header_img"><img src="{% static '/image/grow.jpg' %}" alt=""> </div>
+
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> <a href="index.html" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+                        class="nav_logo-name">GROWUPP</span> </a>
+                <div class="nav_list">
+                    <a href="/account/index/" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span> </a>
+                    <a href="/account/totalaccount/" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
+                            class="nav_name">Account</span> </a>
+                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
+                            class="nav_name">Messages</span> </a>
+                    <a href="/account/colleges/" class="nav_link"> <i class='fa fa-university'></i> <span
+                            class="nav_name">Colleges</span> </a>
+                    <a href="/account/passcode/" class="nav_link"> <i class='bx bx-key nav_icon'></i> <span
+                            class="nav_name">Passocde</span> </a>
+                    <a href="/account/jobs/" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span
+                            class="nav_name">Jobs</span>
+                    </a>
+                    <a href="/account/voucher/" class="nav_link"> <i class='fa fa-gift nav_icon'></i> <span
+                            class="nav_name">Voucher</span>
+                    </a>
+                    <a href="/account/dashboarduser/" class="nav_link"> <i class='fa fa-users nav_icon'></i> <span
+                            class="nav_name">Manage User</span>
+                    </a>
+                </div>
+            </div> <a href="/account/dashlogout/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+                    class="nav_name">SignOut</span> </a>
+        </nav>
+    </div>
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+
+        <!-- Account Views -->
+
+        <section class="section about-section gray-bg" id="about">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                            <div style="display: flex;">
+                                <div>
+                                    <h3 class="dark-color">{{acc_ind.firstname}} {{acc_ind.lastname}}</h3>
+                                </div>
+                                {% if acc_ind.Apply_status == "Selected" %}
+                                <div>
+                                    <div>
+                                        <script
+                                            src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <div style="margin-left: 150px;">
+                                            <lottie-player
+                                                src="https://assets1.lottiefiles.com/private_files/lf30_bhbfgu7l.json"
+                                                background="transparent" speed="1" style="width: 120px; height: 120px;"
+                                                loop autoplay>
+                                            </lottie-player>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% elif acc_ind.Apply_status == "Rejected" %}
+                                <div>
+                                    <div>
+                                        <script
+                                            src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <div style="margin-left: 150px;">
+                                            <lottie-player
+                                                src="https://assets1.lottiefiles.com/private_files/lf30_lac3jwtz.json"
+                                                background="transparent" speed="1" style="width: 120px; height: 120px;"
+                                                loop autoplay>
+                                            </lottie-player>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div>
+                                    <!-- <div>
+                                        <script
+                                            src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                        <div style="padding-left: 100px;">
+                                            <lottie-player
+                                                src="https://assets8.lottiefiles.com/packages/lf20_q0vtqaxf.json"
+                                                background="transparent" speed="1" style="width: 300px; height: 300px;"
+                                                loop autoplay>
+                                            </lottie-player>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                {% endif%}
+                            </div>
+                            <h6 class="theme-color lead">Applying For BDA in GROWUPP</h6>
+                            <!-- <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in
+                                creating stylish, modern websites, web services and online stores. My passion is to
+                                design digital user experiences through the bold interface and meaningful interactions.
+                            </p> -->
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Date Of Birth</label>
+                                        <p>{{acc_ind.Date_of_birth}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Mobile</label>
+                                        <p>{{acc_ind.mobile_no}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>College</label>
+                                        <p>{{acc_ind.college}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Address</label>
+                                        <p>{{acc_ind.district}}, {{acc_ind.state}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>E-mail</label>
+                                        <p>{{acc_ind.email}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Course & Branch</label>
+                                        <p>{{acc_ind.course}} {{acc_ind.branch}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Job Status</label>
+                                        <p>{{acc_ind.Apply_status}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Passing Year</label>
+                                        <p>{{acc_ind.passing_year}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% if acc_ind.gender == "Male" or acc_ind.gender == "male" %}
+                        <div class="about-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                        </div>
+                        {% else %}
+                        <div class="about-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" title="" alt="">
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="row">
+                        <div class="col-6 col-lg-6">
+                            {% if acc_ind.Apply_status == "Applied" %}
+                            <div class="count-data text-center">
+                                <i class="fa-solid fa-check fa-3x" style="color: orange;"></i>
+                                <p class="m-0px font-w-600">Applied</p>
+                            </div>
+                            {% elif acc_ind.Apply_status == "Pending" %}
+                            <div class="count-data text-center">
+                                <i class="fa-regular fa-hourglass fa-3x" style="color: orange;"></i>
+                                <p class="m-0px font-w-600">Pending</p>
+                            </div>
+                            {% elif acc_ind.Apply_status == "Accepted" %}
+                            <div class="count-data text-center">
+                                <i class="fa-solid fa-check-double fa-3x" style="color: orange;"></i>
+                                <p class="m-0px font-w-600">Accepted</p>
+                            </div>
+                            {% elif acc_ind.Apply_status == "Selected" %}
+                            <div class="count-data text-center">
+                                <i class="fa-solid fa-circle-check fa-3x" style="color: green;"></i>
+                                <p class="m-0px font-w-600">Selected</p>
+                            </div>
+                            {% elif acc_ind.Apply_status == "Rejected" %}
+                            <div class="count-data text-center">
+                                <i class="fa-regular fa-circle-xmark fa-3x" style="color: red;"></i>
+                                <p class="m-0px font-w-600">Rejected</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-6 col-lg-6">
+                            <div class="count-data text-center">
+                                <i class="fa-solid fa-money-check-dollar fa-3x" style="color:  #430741;"
+                                    data-mdb-toggle="modal" data-mdb-target="#modalPayment"></i>
+                                <p class="m-0px font-w-600">Payment Status</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-6">
+                            <!-- <div class="count-data text-center">
+                                <i class="fa-solid fa-check fa-3x"></i>
+                                <p class="m-0px font-w-600">All Set</p>
+                            </div> -->
+
+
+                        </div>
+                        <!-- <div class="col-6 col-lg-4">
+                            <div class="count-data text-center">
+                                <i class="fa-solid fa-circle-check fa-3x" style="color: green;"></i>
+                                <p class="m-0px font-w-600">Hired</p>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="ui-group-buttons"
+                    style="margin-top: 25px;display: flex;justify-content: center;align-items: center;">
+
+                    <!-- Accepted -->
+                    {% if acc_ind.Apply_status == "Accepted" %}
+                            
+                    {% else %}
+                    <a href="accept/{{acc_ind.id}}" class="btn btn-success" role="button"
+                        style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
+                        Accept</a>
+                    <div class="or"></div>
+                    {% endif %}
+
+                    <!-- Rejected -->
+                    {% if acc_ind.Apply_status == "Rejected" %}
+
+                    {% else %}
+                    <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: rgb(123, 9, 9); color: white;"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        Reject</a>
+                    <div class="or"></div>
+                    {% endif %}
+                    <!-- Pending  -->
+                    {% if acc_ind.Apply_status == "Pending" %}
+
+                    {% else %}
+                    <a href="pending/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: orange;"><span class="glyphicon glyphicon-remove"></span>
+                        Pending</a>
+                    {% endif %}
+                </div>
+
+
+
+            </div>
+        </section>
+
+
+        <!-- Account View END -->
+
+
+
+    </div>
+    <!--Container Main end-->
+
+
+    <!--Modal: modalDiscount-->
+    <div class="modal fade right" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" data-backdrop="true">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-danger" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading">Payment Status:
+                        {% if acc_ind.payment_status == "success" %}
+                        <strong style="color: green;">Paid</strong>
+                        {% else %}
+                        <strong style="color: red;">Not Paid</strong>
+                        {% endif %}
+                    </p>
+
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button> -->
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <!-- <p class="text-center">
+                                <i class="fas fa-gift fa-4x"></i>
+                            </p> -->
+                            <div>
+                                <script
+                                    src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                                <div>
+                                    {% if acc_ind.payment_status == "success" %}
+                                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_wkebwzpz.json"
+                                        background="transparent" speed="1" style="width: 100px; height: 100px;" loop
+                                        autoplay>
+                                    </lottie-player>
+                                    {% else %}
+                                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_imrP4H.json"
+                                        background="transparent" speed="1" style="width: 150px; height: 150px;" loop
+                                        autoplay>
+                                    </lottie-player>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        {% if acc_ind.payment_status == "success" %}
+                        <div class="col-6" style="margin-top:18px;">
+                            <p>Hurray<b>!</b></p>
+                            <p>
+                                <strong>Paymant has been Done.</strong>
+                            </p>
+                            <!-- <h2>
+                                <span class="badge">v52gs1</span>
+                            </h2> -->
+
+                        </div>
+                        {% else %}
+                        <div class="col-6" style="margin-top:15px;">
+                            <p>Pending<b>!</b></p>
+                            <p>
+                                <strong>Paymant still not Done.</strong>
+                            </p>
+                            <!-- <h2>
+                                <span class="badge">v52gs1</span>
+                            </h2> -->
+
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!--Footer-->
+                    <!-- <div class="modal-footer flex-center">
+                        <a href="https://mdbootstrap.com/docs/standard/pro/" class="btn btn-danger">Get it
+                            now
+                            <i class="far fa-gem ml-1 white-text"></i>
+                        </a>
+                        <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">No, thanks</a>
+                    </div> -->
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: modalDiscount-->
+
+
+
+
+
+</body>
+
+
+
+
+</html>
