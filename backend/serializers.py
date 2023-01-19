@@ -8,10 +8,12 @@ from .models import Opening
 from .models import College
 from .models import Dashboarduser
 from .models import Voucher
+from .models import Passkey
+
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model= Account
-        fields =[ 'id' , 'firstname' ,'lastname','email','password' ,'mobile_no' , 'whatsapp_no','gender','Date_of_birth','state','district','college_state','college','course','branch','passing_year','Apply_status','created_at','enrolment','payment_status']
+        fields =[ 'id' , 'firstname' ,'lastname','email','password' ,'mobile_no' , 'whatsapp_no','gender','Date_of_birth','state','district','college_state','college','course','branch','passing_year','Apply_status','created_at','enrolment','payment_status','job_type','job_name','employee_status']
 
 class CareerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,12 +23,18 @@ class CareerSerializer(serializers.ModelSerializer):
 class PasscodeSerializer(serializers.ModelSerializer):
     class Meta:
         model= Passcode
-        fields =['id','code','code_type','valid_date']
+        fields =['id','code','code_type']
+
+
+class PasskeySerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Passkey
+        fields =['id','passkey','Apply_status',]
 
 class AccountopeningSerializer(serializers.ModelSerializer):
     class Meta:
         model= Opening
-        fields =['id','job','job_type']
+        fields =['id','job','job_type','code','description','display']
 
 class CollegeSerializer(serializers.ModelSerializer):
     class Meta:

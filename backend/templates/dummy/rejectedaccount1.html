@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<head>
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <script src="{% static '/js/require.js' %}"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+
+    <!-- MB-BOOTSTRAP MODAL -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+
+
+
+
+
+</head>
+
+<body id="body-pd">
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+    <header class="header" id="header" style="background-color: white;box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div style="display: flex;justify-content: space-around;">
+            <div style="color: black;padding-right: 30px;"><b>Login as {{current_user}}</b></div>
+            <div class="header_img"><img src="{% static '/image/grow.jpg' %}" alt=""> </div>
+
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> <a href="/account/index/" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+                        class="nav_logo-name">GROWUPP</span> </a>
+                <div class="nav_list">
+                    <a href="/account/index/" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span> </a>
+                    <a href="/account/totalaccount/" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
+                            class="nav_name">Account</span> </a>
+                    <a href="/account/passkey/" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
+                            class="nav_name">Passkey</span> </a>
+                    <a href="/account/colleges/" class="nav_link"> <i class='fa fa-university'></i> <span
+                            class="nav_name">Colleges</span> </a>
+                    <a href="/account/passcode/" class="nav_link"> <i class='bx bx-key nav_icon'></i> <span
+                            class="nav_name">Passocde</span> </a>
+                    <a href="/account/jobs/" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span
+                            class="nav_name">Jobs</span>
+                    </a>
+                    <a href="/account/voucher/" class="nav_link"> <i class='fa fa-gift nav_icon'></i> <span
+                            class="nav_name">Voucher</span>
+                    </a>
+                    <a href="/account/dashboarduser/" class="nav_link"> <i class='fa fa-users nav_icon'></i> <span
+                            class="nav_name">Manage User</span>
+                    </a>
+
+                </div>
+            </div> <a href="/account/dashlogout/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+                    class="nav_name">SignOut</span> </a>
+        </nav>
+    </div>
+    <!--Container Main start-->
+    <div class="height-100 bg-light">
+
+        <!-- Passcode Table -->
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("dtBasicExample");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <div class="container" style="padding-top: 100px;">
+            <div style="display:flex;justify-content: space-between;">
+                <h4>Rejected Accounts</h4>
+                <div class="input-group rounded">
+                    <input type="search" class="form-control rounded" id="myInput" onkeyup="myFunction()"
+                        placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </div>
+
+            <table id="dtBasicExample" class="table table-hover table-striped table-responsive-md btn-table"
+                style="padding-top: 20">
+                <thead>
+                    <tr>
+                        <th>S.NO </th>
+                        <th data-mdb-sort="true">First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>Created At</th>
+                        <th>Mobile</th>
+                        <th>Job Status</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acc in account %}
+
+                    <tr>
+                        <td>{{acc.id}}</td>
+                        <td>{{acc.firstname}}</td>
+                        <td>{{acc.lastname}}</td>
+                        <td>{{acc.email}}</td>
+                        <td>{{acc.gender}}</td>
+                        <td></td>
+                        <td>{{acc.mobile_no}}</td>
+                        {% if acc.Apply_status == "Rejected" %}
+                        <td class="badge rounded-pill badge-danger"
+                            style="margin: 12px;padding: 8px;background-color: rgb(147, 9, 9); color:white;display: flex;justify-content: center;align-items: center;">
+                            {{acc.Apply_status}}</td>
+                        <!-- {% elif acc.Apply_status == "Accepted" %}
+                        <td class="badge rounded-pill badge-secondary"
+                            style="margin: 12px;padding: 8px;background-color: orchid; color:white;display: flex;justify-content: center;align-items: center;">
+                            {{acc.Apply_status}}</td>
+                        {% elif acc.Apply_status == "Rejected" %}
+                        <td class="badge rounded-pill badge-danger"
+                            style="margin: 12px;padding: 8px;background-color: rgb(147, 9, 9); color:white;display: flex;justify-content: center;align-items: center;">
+                            {{acc.Apply_status}}</td>
+                        {% else %}
+                        <td class=" badge rounded-pill badge-warning"
+                            style="margin: 12px;padding: 8px;background-color:orange; color:white;display: flex;justify-content: center;align-items: center;">
+                            {{acc.Apply_status}}</td> -->
+                        {% endif %}
+                        <!-- <td><a href="accountview/{{acc.id}}">View</a></td> -->
+                        <td>
+                            <button type="button" class="btn btn-indigo btn-sm m-0 waves-effect"><a
+                                    href="../totalaccount/accountview/{{acc.id}}">View</a></button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Passcode Table END -->
+
+
+
+    </div>
+    <!--Container Main end-->
+
+</body>
+
+
+
+
+</html>

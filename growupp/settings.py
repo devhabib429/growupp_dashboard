@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'growupp.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'growupp_apiss',  
+        'NAME': 'growupp_hiringdb',  
         'USER': 'admin',  
         'PASSWORD': 'Admin123',  
         'HOST': 'growuppapi.crnsxhdeio9k.ap-south-1.rds.amazonaws.com',  

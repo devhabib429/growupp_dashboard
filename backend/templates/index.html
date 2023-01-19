@@ -1,337 +1,591 @@
-{% load static %}
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<head>
-    <!-- CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <script src="{% static '/js/require.js' %}"></script>
+{% block main %}
+
+<div class="height-100 bg-light">
+
+    <!-- CARD -->
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-</head>
 
-<body id="body-pd">
-    <header class="header" id="header" style="background-color: white;box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div style="display: flex;justify-content: space-around;">
-            <div style="color: black;padding-right: 30px;">Login as <b>{{current_user}}</b></div>
-            <div class="header_img"><img src="{% static '/image/grow.jpg' %}" alt=""> </div>
 
-        </div>
-    </header>
-    <!-- <div><b>{{current_user}}</b></div> -->
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div>
-                <a href="/account/index/" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
-                        class="nav_logo-name">GROWUPP</span> </a>
-                <div class="nav_list">
-                    <a href="/account/index/" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">Dashboard</span> </a>
-                    <a href="/account/totalaccount/" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
-                            class="nav_name">Account</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
-                            class="nav_name">Messages</span> </a>
-                    <a href="/account/colleges/" class="nav_link"> <i class='fa fa-university'></i> <span
-                            class="nav_name">Colleges</span> </a>
-                    <a href="/account/passcode/" class="nav_link"> <i class='bx bx-key nav_icon'></i> <span
-                            class="nav_name">Passcode</span> </a>
-                    <a href="/account/jobs/" class="nav_link"> <i class='bx bx-briefcase nav_icon'></i> <span
-                            class="nav_name">Jobs</span>
-                    </a>
-                    <a href="/account/voucher/" class="nav_link"> <i class='fa fa-gift nav_icon'></i> <span
-                            class="nav_name">Voucher</span>
-                    </a>
-                    <a href="/account/dashboarduser/" class="nav_link"> <i class='fa fa-users nav_icon'></i> <span
-                            class="nav_name">Manage User</span>
-                    </a>
-                </div>
-            </div> <a href="/account/dashlogout/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
-                    class="nav_name">SignOut</span> </a>
-        </nav>
+    <div class="divider" style="padding-top: 40px;margin-bottom: -30px;">
+
+        <span></span><span>Account</span><span></span>
     </div>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
 
-        <!-- CARD -->
-
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-
-        <div class="divider" style="padding-top: 40px;margin-bottom: -30px;">
-
-            <span></span><span>Status</span><span></span>
-        </div>
-
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                <a href="/account/totalaccount/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-info">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Total Account Created</p>
-                                        <h4 class="my-1 text-info">{{total}}</h4>
-                                        <!-- <p class="mb-0 font-13">{{applied}} applied out of {{total}}</p> -->
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow="{{applied}}" aria-valuemin="0"
-                                                aria-valuemax="{{total}}"
-                                                style="width: 50%; background-color: #0dcaf0;">
-                                                {{applied}}/{{total}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{applied}} Applied out of {{total}}</p
-                                                style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="/account/appliedaccountview/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-danger">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Applied</p>
-                                        <h4 class="my-1 text-danger" style="color: #fd3550;">{{applied}}</h4>
-                                        <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
-                                                aria-valuemax="{{applied}}"
-                                                style="width: 50%;background-color: #fd3550;">
-                                                {{accept}}/{{applied}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
-                                                style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
-                                            class="fa fa-user-circle-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="/account/acceptaccountview/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-success">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Accepted</p>
-                                        <h4 class="my-1" style="color:#64c15c;">{{accept}}</h4>
-                                        <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
-                                                aria-valuemax="{{accept}}" style="width: 50%;background-color:#64c15c;">
-                                                {{reject}}/{{accept}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{reject}} Rejected out of {{accept}}</p
-                                                style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
-                                        <i class="fa fa-bar-chart"></i>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-
-
-        <div class="divider" style="padding-top: 20px;margin-bottom: -30px">
-            <span></span><span>Outcome</span><span></span>
-        </div>
-
-
-
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                <a href="/account/pendingaccountview/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-info">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Pending</p>
-                                        <h4 class="my-1 text-info">{{pending}}</h4>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow={{pending}} aria-valuemin="0"
-                                                aria-valuemax={{pending}} style="width: 50%;background-color: #0dcaf0;">
-                                                {{pending}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{pendingt}} Pending</p style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
-                                        <i class="fa fa-hourglass-end"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="/account/rejectedaccountview/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-danger">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Rejected</p>
-                                        <h4 class="my-1 text-danger">{{reject}}</h4>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
-                                                aria-valuemax="{{total}}" style="width: 50%;background-color: #fd3550;">
-                                                {{reject}}/{{total}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{reject}} Rejected out of {{total}}</p
-                                                style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
-                                            class="fa fa-times-circle-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="/account/selectedaccountview/">
-                    <div class="col">
-                        <div class="card radius-10 border-start border-0 border-3 border-success">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">Selected</p>
-                                        <h4 class="my-1 text-success">{{select}}</h4>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" aria-valuenow="{{select}}" aria-valuemin="0"
-                                                aria-valuemax="{{total}}" style="width: 50%;background-color:#64c15c;">
-                                                {{select}}/{{total}}</div>
-                                        </div>
-                                        <div
-                                            style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                            <p style="font-size:12px;">{{select}} Selected out of {{total}}</p
-                                                style="font-size:12px;">
-
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
-                                        <i class="fa fa-check-circle"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-
-
-
-        <div class="divider" style="padding-top: 20px;margin-bottom: -30px">
-            <span></span><span>Payment Status</span><span></span>
-        </div>
-
-
-
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a href="#">
                 <div class="col">
                     <div class="card radius-10 border-start border-0 border-3 border-info">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Amount Paid</p>
-                                    <h4 class="my-1 text-info">{{paid}}</h4>
+                                    <p class="mb-0 text-secondary">Total Account</p>
+                                    <h4 class="my-1 text-info">{{total}}</h4>
+                                    <!-- <p class="mb-0 font-13">{{applied}} applied out of {{total}}</p> -->
                                     <!-- <div class="progress">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                            role="progressbar" aria-valuenow={{pending}} aria-valuemin="0"
-                                            aria-valuemax={{pending}} style="width: 50%;background-color: #0dcaf0;">
-                                            {{pending}}</div>
-                                    </div> -->
+                                            role="progressbar" aria-valuenow="{{applied}}" aria-valuemin="0"
+                                            aria-valuemax="{{total}}" style="width: 50%; background-color: #0dcaf0;">
+                                            {{applied}}/{{total}}</div>
+                                    </div>
                                     <div
                                         style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                        <p style="font-size:12px;"><i class="fa fa-indian-rupee-sign"></i>{{paid}}
-                                            Paid Successfully</p style="font-size:12px;">
+                                        <p style="font-size:12px;">{{applied}} Applied out of {{total}}</p
+                                            style="font-size:12px;">
 
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
-                                        class="fa fa-check"></i>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </a>
+            <a href="#">
                 <div class="col">
                     <div class="card radius-10 border-start border-0 border-3 border-danger">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Amount to be Paid</p>
-                                    <h4 class="my-1 text-danger">{{tobepaid}}</h4>
+                                    <p class="mb-0 text-secondary">This Month</p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{month}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
                                     <!-- <div class="progress">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
-                                            aria-valuemax="{{total}}" style="width: 50%;background-color: #fd3550;">
-                                            {{reject}}/{{total}}</div>
-                                    </div> -->
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
                                     <div
                                         style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
-                                        <p style="font-size:12px;">{{tobepaid}} Amount to be paid after Selected</p
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
                                             style="font-size:12px;">
 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
-                                        class="fa fa-eye"></i>
+                                        class="fa fa-bar-chart"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col">
+            </a>
+            <a href="#">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Today</p>
+                                    <h4 class="my-1" style="color:#64c15c;">{{today}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                            aria-valuemax="{{accept}}" style="width: 50%;background-color:#64c15c;">
+                                            {{reject}}/{{accept}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{reject}} Rejected out of {{accept}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="divider" style="padding-top: 40px;margin-bottom: -30px;">
+
+        <span></span><span>Applied Data</span><span></span>
+    </div>
+     
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a href="/account/internship/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Internship </p>
+                                    <h4 class="my-1 text-info">{{internship}}</h4>
+                                    <!-- <p class="mb-0 font-13">{{applied}} applied out of {{total}}</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{applied}}" aria-valuemin="0"
+                                            aria-valuemax="{{total}}" style="width: 50%; background-color: #0dcaf0;">
+                                            {{applied}}/{{total}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{applied}} Applied out of {{total}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/fresher/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Freshers </p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{fresher}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/experience/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Experienced</p>
+                                    <h4 class="my-1" style="color:#64c15c;">{{experience}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                            aria-valuemax="{{accept}}" style="width: 50%;background-color:#64c15c;">
+                                            {{reject}}/{{accept}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{reject}} Rejected out of {{accept}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="divider" style="padding-top: 40px;margin-bottom: -30px;">
+
+        <span></span><span>BDA Hiring Data</span><span></span>
+    </div>
+     
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a href="/account/bdainternship/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Internship </p>
+                                    <h4 class="my-1 text-info">{{bda_internship}}</h4>
+                                    <!-- <p class="mb-0 font-13">{{applied}} applied out of {{total}}</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{applied}}" aria-valuemin="0"
+                                            aria-valuemax="{{total}}" style="width: 50%; background-color: #0dcaf0;">
+                                            {{applied}}/{{total}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{applied}} Applied out of {{total}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/bdafresher/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Freshers </p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{bda_fresher}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="/account/bdaexperience/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Experienced</p>
+                                    <h4 class="my-1" style="color:#64c15c;">{{bda_experience}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                            aria-valuemax="{{accept}}" style="width: 50%;background-color:#64c15c;">
+                                            {{reject}}/{{accept}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{reject}} Rejected out of {{accept}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+             <a href="#">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Hold for Interview</p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{fresher}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+             <a href="#">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Waiting for Enrollment </p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{fresher}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+ <a href="#">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Expired </p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{fresher}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div> -->
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-bar-chart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="divider" style="padding-top: 40px;margin-bottom: -30px;">
+
+        <span></span><span> Account Status</span><span></span>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a href="/account/totalaccount/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Total Account Created</p>
+                                    <h4 class="my-1 text-info">{{total}}</h4>
+                                    <!-- <p class="mb-0 font-13">{{applied}} applied out of {{total}}</p> -->
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{applied}}" aria-valuemin="0"
+                                            aria-valuemax="{{total}}" style="width: 50%; background-color: #0dcaf0;">
+                                            {{applied}}/{{total}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{applied}} Applied out of {{total}}</p
+                                            style="font-size:12px;">
+
+                                    </div>
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class="fa fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/appliedaccountview/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Applied</p>
+                                    <h4 class="my-1 text-danger" style="color: #fd3550;">{{applied}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{accept}}" aria-valuemin="0"
+                                            aria-valuemax="{{applied}}" style="width: 50%;background-color: #fd3550;">
+                                            {{accept}}/{{applied}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{accept}} Accepted out of {{applied}}</p
+                                            style="font-size:12px;">
+
+                                    </div>
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-user-circle-o"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/acceptaccountview/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Accepted</p>
+                                    <h4 class="my-1" style="color:#64c15c;">{{accept}}</h4>
+                                    <!-- <p class="mb-0 font-13">+5.4% from last week</p> -->
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                            aria-valuemax="{{accept}}" style="width: 50%;background-color:#64c15c;">
+                                            {{reject}}/{{accept}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{reject}} Rejected out of {{accept}}</p
+                                            style="font-size:12px;">
+
+                                    </div>
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="divider" style="padding-top: 20px;margin-bottom: -30px">
+        <span></span><span>Outcome</span><span></span>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <a href="/account/pendingaccountview/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Pending</p>
+                                    <h4 class="my-1 text-info">{{pending}}</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow={{pending}} aria-valuemin="0"
+                                            aria-valuemax={{pending}} style="width: 50%;background-color: #0dcaf0;">
+                                            {{pending}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{pendingt}} Pending</p style="font-size:12px;">
+
+                                    </div>
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
+                                    <i class="fa fa-hourglass-end"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/rejectedaccountview/">
+                <div class="col">
+                    <div class="card radius-10 border-start border-0 border-3 border-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <p class="mb-0 text-secondary">Rejected</p>
+                                    <h4 class="my-1 text-danger">{{reject}}</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                            aria-valuemax="{{total}}" style="width: 50%;background-color: #fd3550;">
+                                            {{reject}}/{{total}}</div>
+                                    </div>
+                                    <div
+                                        style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                        <p style="font-size:12px;">{{reject}} Rejected out of {{total}}</p
+                                            style="font-size:12px;">
+
+                                    </div>
+                                </div>
+                                <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                        class="fa fa-times-circle-o"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/account/selectedaccountview/">
+                <div class="col">
                     <div class="card radius-10 border-start border-0 border-3 border-success">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -357,27 +611,90 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+            </a>
 
-            </div>
         </div>
-
-
-
-        <!-- CARD END -->
-
-
-
     </div>
-    <!--Container Main end-->
+
+
+
+    <div class="divider" style="padding-top: 20px;margin-bottom: -30px">
+        <span></span><span>Payment Status</span><span></span>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col">
+                <div class="card radius-10 border-start border-0 border-3 border-info">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">Total Amount Paid</p>
+                                <h4 class="my-1 text-info">{{paid}}</h4>
+                                <!-- <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuenow={{pending}} aria-valuemin="0"
+                                        aria-valuemax={{pending}} style="width: 50%;background-color: #0dcaf0;">
+                                        {{pending}}</div>
+                                </div> -->
+                                <div
+                                    style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                    <p style="font-size:12px;"><i class="fa fa-indian-rupee-sign"></i>{{paid}}
+                                        Paid Successfully</p style="font-size:12px;">
+
+                                </div>
+                            </div>
+                            <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                    class="fa fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10 border-start border-0 border-3 border-danger">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary">Amount to be Paid</p>
+                                <h4 class="my-1 text-danger">{{tobepaid}}</h4>
+                                <!-- <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuenow="{{reject}}" aria-valuemin="0"
+                                        aria-valuemax="{{total}}" style="width: 50%;background-color: #fd3550;">
+                                        {{reject}}/{{total}}</div>
+                                </div> -->
+                                <div
+                                    style="display: flex;justify-content:center;margin-top: 10px;margin-bottom: -20px;">
+                                    <p style="font-size:12px;">{{tobepaid}} Amount to be paid after Selected</p
+                                        style="font-size:12px;">
+
+                                </div>
+                            </div>
+                            <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                    class="fa fa-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- CARD END -->
+
+
+
+</div>
 
 
 
 
 
-</body>
-
-
-
-
-</html>
+{% endblock %}

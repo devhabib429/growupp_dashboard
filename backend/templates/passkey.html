@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+
+{% block mdb %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<!--Container Main start-->
+<div class="height-100 bg-light">
+
+    <!-- Passcode Table -->
+
+
+    <div class="container" style="padding-top: 100px;">
+
+        <div style="display:flex;justify-content: space-between;">
+            <h4>Passkey</h4>
+            <button type="button" class="btn btn-primary" style="background-color:#4a2a51" data-toggle="modal"
+                data-target="#myModal">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add</span>
+            </button>
+        </div>
+
+        <table class="table table-hover table-striped" style="padding-top: 50px;margin-top: 30px;">
+            <thead>
+                <tr>
+
+                    <th>Passkey</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pcode in passkey %}
+                <tr>
+
+                    <td>{{pcode.passkey}}</td>
+                    <td>
+                        <a href="activekey/{{pcode.id}}"><i class="fa-solid fa-repeat" style="color: green;"></i></a>
+                        {{pcode.Apply_status}}
+                        <a href="inactivekey/{{pcode.id}}"><i class="fa-solid fa-repeat" style="color: red;"></i></a>
+                    </td>
+
+                    <td>
+                        <a href="deletepasskey/{{pcode.id}}"><i class="fa-solid fa-trash" style="color: red;"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Passcode Table END -->
+
+
+
+</div>
+<!--Container Main end-->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex;justify-content: space-between;">
+                <div><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+                <div>
+                    <h4 class="modal-title">Add Passcode</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form action="addpasskey/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="text">Passkey</label>
+                        <input type="text" name="passkey" maxlength="4" class="form-control" id="passkey">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select" name="status" aria-label="Default select example">
+                            <option selected>Choose Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" onclick="duplicat()"
+                        style="background-color:#4a2a51">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal End -->
+
+
+{% endblock %}

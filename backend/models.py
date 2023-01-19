@@ -27,12 +27,16 @@ class Account(models.Model):
     passing_year = models.CharField(max_length=5)
     enrolment = models.CharField(max_length=20,default="Not Generated")
     payment_status = models.CharField(max_length=20,default="Null")
-    # def nowdate():
-    #     t = datetime.date.today
-    #     return t
-    created_at = models.DateTimeField(auto_now_add=True)
+    def nowdate():
+        t = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S").split(" ")[0]
+        return t
+    created_at = models.DateTimeField(default=nowdate)
     Apply_status = models.CharField(max_length=10,default=0)
+    job_type = models.CharField(max_length=50,default="Null")
+    job_name= models.CharField(max_length=50,default="Null")
+    employee_status = models.CharField(max_length=50,default="Null")
     
+
     
 
     # def 24hrslater():
@@ -56,10 +60,18 @@ class Career(models.Model):
 class Passcode(models.Model):
     code =  models.CharField(max_length=100)
     code_type = models.CharField(max_length=100)
-    valid_date = models.DateField()
+   
+
+class Passkey(models.Model):
+    passkey = models.CharField(max_length=100,unique=True)
+    Apply_status = models.CharField(max_length=10)
+
 class Opening(models.Model):
     job = models.CharField(max_length=100)
-    job_type =  models.CharField(max_length=200,default="Null") 
+    job_type =  models.CharField(max_length=200,default="Null")
+    code = models.CharField(max_length=10) 
+    description = models.CharField(max_length=30000)
+    display = models.CharField(max_length=10)
     
 class College(models.Model):
     college_name =  models.CharField(max_length=200)

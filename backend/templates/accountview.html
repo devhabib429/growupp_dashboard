@@ -151,15 +151,15 @@
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="index.html" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+            <div> <a href="/account/index/" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
                         class="nav_logo-name">GROWUPP</span> </a>
                 <div class="nav_list">
                     <a href="/account/index/" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span> </a>
                     <a href="/account/totalaccount/" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
                             class="nav_name">Account</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
-                            class="nav_name">Messages</span> </a>
+                    <a href="/account/passkey/" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="nav_name">Passkey</span> </a>
                     <a href="/account/colleges/" class="nav_link"> <i class='fa fa-university'></i> <span
                             class="nav_name">Colleges</span> </a>
                     <a href="/account/passcode/" class="nav_link"> <i class='bx bx-key nav_icon'></i> <span
@@ -237,7 +237,7 @@
 
                                 {% endif%}
                             </div>
-                            <h6 class="theme-color lead">Applying For BDA in GROWUPP</h6>
+                            <h6 class="theme-color lead">Applying For {{acc_ind.job_name}} in GROWUPP</h6>
                             <!-- <p>I <mark>design and develop</mark> services for customers of all sizes, specializing in
                                 creating stylish, modern websites, web services and online stores. My passion is to
                                 design digital user experiences through the bold interface and meaningful interactions.
@@ -292,6 +292,7 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar8.png" title="" alt="">
                         </div>
                         {% endif %}
+                        <h6>Your Enrollment : </h6>
                     </div>
                 </div>
                 <div class="counter">
@@ -351,18 +352,69 @@
                 <div class="ui-group-buttons"
                     style="margin-top: 25px;display: flex;justify-content: center;align-items: center;">
 
-                    <!-- Accepted -->
+
                     {% if acc_ind.Apply_status == "Accepted" %}
-                            
+                    <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: rgb(123, 9, 9); color: white;"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        Reject</a>
+                    <div class="or"></div>
+                    <a href="pending/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: orange;"><span class="glyphicon glyphicon-remove"></span>
+                        Pending</a>
+                    {% elif acc_ind.Apply_status == "Rejected" %}
+                    <a href="accept/{{acc_ind.id}}" class="btn btn-success" role="button"
+                        style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
+                        Accept</a>
+                    <div class="or"></div>
+                    <a href="pending/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: orange;"><span class="glyphicon glyphicon-remove"></span>
+                        Pending</a>
+                    {% elif acc_ind.Apply_status == "Pending" %}
+                    <a href="accept/{{acc_ind.id}}" class="btn btn-success" role="button"
+                        style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
+                        Accept</a>
+                    <div class="or"></div>
+                    <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: rgb(123, 9, 9); color: white;"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        Reject</a>
+                    {% elif acc_ind.Apply_status == "Selected" %}
+                    <a href="accept/{{acc_ind.id}}" class="btn btn-success disabled" role="button"
+                        style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
+                        Time</a>
+                    <div class="or"></div>
+                    <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: rgb(123, 9, 9); color: white;"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        Quit</a>
+                    {% elif acc_ind.Apply_status == "Applied" %}
+                    <a href="accept/{{acc_ind.id}}" class="btn btn-success" role="button"
+                        style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
+                        Accept</a>
+                    <div class="or"></div>
+                    <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
+                        style="background-color: rgb(123, 9, 9); color: white;"><span
+                            class="glyphicon glyphicon-remove"></span>
+                        Reject</a>
+                    {% else %}
+
+                    {% endif %}
+
+
+                    <!-- Accepted -->
+
+                    <!-- {% if acc_ind.Apply_status == "Accepted" %}
+
                     {% else %}
                     <a href="accept/{{acc_ind.id}}" class="btn btn-success" role="button"
                         style="background-color: #430741;"><span class="glyphicon glyphicon-ok"></span>
                         Accept</a>
                     <div class="or"></div>
-                    {% endif %}
+                    {% endif %} -->
 
                     <!-- Rejected -->
-                    {% if acc_ind.Apply_status == "Rejected" %}
+                    <!-- {% if acc_ind.Apply_status == "Rejected" %}
 
                     {% else %}
                     <a href="reject/{{acc_ind.id}}" class="btn btn-default" role="button"
@@ -370,15 +422,18 @@
                             class="glyphicon glyphicon-remove"></span>
                         Reject</a>
                     <div class="or"></div>
-                    {% endif %}
+                    {% endif %} -->
                     <!-- Pending  -->
-                    {% if acc_ind.Apply_status == "Pending" %}
+                    <!-- {% if acc_ind.Apply_status == "Pending" %}
 
                     {% else %}
                     <a href="pending/{{acc_ind.id}}" class="btn btn-default" role="button"
                         style="background-color: orange;"><span class="glyphicon glyphicon-remove"></span>
                         Pending</a>
-                    {% endif %}
+                    {% endif %} -->
+                    <!-- Selected -->
+
+
                 </div>
 
 
